@@ -10,7 +10,6 @@ import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileInputStream
 import java.io.InputStream
-import androidx.core.graphics.scale
 
 data class ImageData(
     val bitmap: Bitmap,
@@ -103,7 +102,7 @@ class ImageLoader {
             var bitmap = BitmapFactory.decodeStream(newStream, null, options)
 
             if (bitmap != null && (bitmap.width > finalWidth || bitmap.height > finalHeight)) {
-                val scaledBitmap = bitmap.scale(finalWidth, finalHeight)
+                val scaledBitmap = Bitmap.createScaledBitmap(bitmap, finalWidth, finalHeight, true)
                 if (scaledBitmap != bitmap) {
                     bitmap.recycle()
                     bitmap = scaledBitmap

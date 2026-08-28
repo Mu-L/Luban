@@ -289,15 +289,9 @@ class Luban @JvmOverloads constructor(
         var bitmap = imageData.bitmap
         try {
             if (bitmap.config != Bitmap.Config.RGB_565 && bitmap.config != Bitmap.Config.ARGB_8888) {
-                val rgbBitmap = if (bitmap.config == Bitmap.Config.ARGB_8888) {
-                    bitmap.copy(Bitmap.Config.RGB_565, false)
-                } else {
-                    bitmap.copy(Bitmap.Config.ARGB_8888, false)
-                }
-                if (rgbBitmap != bitmap) {
-                    bitmap.recycle()
-                    bitmap = rgbBitmap
-                }
+                val converted = bitmap.copy(Bitmap.Config.ARGB_8888, false)
+                bitmap.recycle()
+                bitmap = converted
             }
 
             val fixedQuality = if (!target.isLongImage) 60 else null

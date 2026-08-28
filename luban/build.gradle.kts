@@ -6,7 +6,7 @@ plugins {
     alias(libs.plugins.maven.publish)
 }
 
-val libraryVersion = "2.0.1"
+val libraryVersion = "2.0.2"
 
 android {
     namespace = "top.zibin.luban"
@@ -66,9 +66,7 @@ android {
 dependencies {
     api(libs.kotlinx.coroutines.android)
     api(libs.kotlinx.coroutines.core)
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
+    compileOnly(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.exifinterface)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
