@@ -50,10 +50,16 @@ android {
 
     externalNativeBuild {
         cmake {
-            path = file("src/main/cpp/CMakeLists.txt")
-            version = "3.22.1"
-        }
+        path = file("src/main/cpp/CMakeLists.txt")
+        version = "3.22.1"
     }
+}
+
+androidComponents {
+    onVariants {
+        it.aarMetadata.minCompileSdk.set(21)
+    }
+}
 
     packaging {
         jniLibs {
